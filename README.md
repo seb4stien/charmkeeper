@@ -9,4 +9,6 @@ An agent to simplify the maintenance of your charm.
 
 ## Usage
 
-`copilot --agent charmkeeper -i "bring this repo up to our standards"`
+Interactive usage: `copilot --agent charmkeeper -i "bring this repo up to our standards"`
+
+Yolo mode: `copilot --agent charmkeeper -i "bring this repo up to our standards" --yolo`
