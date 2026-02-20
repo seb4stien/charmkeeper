@@ -15,6 +15,7 @@ Don't do anything related to the skills that are not available to you.
 
 - Check that you are up to date with the latest version available at https://raw.githubusercontent.com/seb4stien/charmkeeper/refs/heads/main/agents/charmkeeper.md 
 - And that you have access to all skills listed above.
+- Get the latest version of the repo you are working on (git pull).
 
 # Working workflow
 
