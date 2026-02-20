@@ -25,16 +25,26 @@ Plan:
 
   - See [How to migrate from pytest-operator to Jubilant](https://documentation.ubuntu.com/jubilant/how-to/migrate-from-pytest-operator/) if the charm is currently using pytest-operator.
 
-- The `tests/integration` folder should look like: https://github.com/canonical/platform-engineering-charm-template/tree/main/tests/integration
 
-  - There is a `conftest.py` with the same options as: https://raw.githubusercontent.com/canonical/platform-engineering-charm-template/refs/heads/main/tests/integration/conftest.py
-  - There is a `test_charm.py` to test the basic behaviors of the charm.
-  - There should be additional `test_xxx.py` files to test specific integrations of the charm.
+- For each charm in the repository, there should be a `tests/` folder like: https://github.com/canonical/platform-engineering-charm-template/tree/main/tests
+
+  - There is a `tests/conftest.py` file to add options to pytest. See an example here: https://github.com/canonical/haproxy-operator/blob/main/haproxy-spoe-auth-operator/tests/conftest.py
+  - Integration tests goes in `tests/integration`
+  - There is a `tests/integration/conftest.py` file with the same fixtures as: https://raw.githubusercontent.com/canonical/platform-engineering-charm-template/refs/heads/main/tests/integration/conftest.py
+  - Fixtures should look like the ones in https://raw.githubusercontent.com/canonical/netbox-k8s-operator/refs/heads/main/tests/integration/conftest.py
+  - Helper functions should go in `tests/integration/helpers.py`. See an example here: https://raw.githubusercontent.com/canonical/netbox-k8s-operator/refs/heads/main/tests/integration/helpers.py
+  - There is a `tests/integration/test_charm.py` to test the basic behaviors of the charm.
+  - There should be additional `tests/integration/test_xxx.py` files to test specific integrations of the charm.
+
+- If the repository contains multiple charms, there should be a `tests/integration` at the root of the repository. You can find an example here: https://github.com/canonical/haproxy-operator/tree/main/tests
+
 
 - Dependencies
 
-  - The charm used in the integration tests should be deployed using the `latest/edge` channel (or "*track*/edge").
+  - The charms used in the integration tests should be deployed using the `latest/edge` channel (or "*track*/edge").
   - An explicit revision should be set to deploy the charm.
+  - Revisions are defined through constants defined at the beginning of the file.
+  - Each constant is preceded with a '# renovate: depName="xxx"' directive to let renovate detect and update the revision.
   
 ## Local testing
 
@@ -53,3 +63,12 @@ Run integration tests with:
 ```bash
 multipass exec charmkeeper -d /workdir/$TERRAFORM_MODULE -- tox -e integration
 ```
+
+# Maintain
+
+## Configuring renovate
+
+Configure renovate with a charmhub customDatasource like in https://raw.githubusercontent.com/canonical/platform-engineering-charm-template/refs/heads/main/renovate.json to
+
+- Add a regex customManager to update the revisions
+- Set ignorePath to an empty array to not exclude the `tests` folders
