@@ -53,14 +53,3 @@ Run integration tests with:
 ```bash
 multipass exec charmkeeper -d /workdir/$TERRAFORM_MODULE -- tox -e integration
 ```
-
-# Maintain
-
-## Configuring renovate
-
-Configure renovate like https://raw.githubusercontent.com/canonical/platform-engineering-charm-template/refs/heads/main/renovate.json to
-
-- Add a charmhub datasource and use it.
-- Add a regex custom manager for revisions.
-- Set ignorePath to an empty array to not exclude the tests/ folders of terraform.
-
