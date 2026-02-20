@@ -17,7 +17,7 @@ Plan:
   - `juju provider`: ~> 1.0
 
 - The module should only have a "model_uuid" variable, no "model" variable.
-- Lint terraform modules with `terraform fmt --recursive` and `tflint --recursive`.
+- Lint terraform modules with `terraform fmt --recursive` and `tflint --recursive` (fix the errors and the warnings).
 
 # Testing
 

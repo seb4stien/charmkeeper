@@ -24,3 +24,4 @@ Use semantic versioning for the branch names.
 
 Once the local tests pass, push your branch and create a draft PR.
 
+After the PR is created, wait 5 minutes, check the CI results, and fix any issues.
