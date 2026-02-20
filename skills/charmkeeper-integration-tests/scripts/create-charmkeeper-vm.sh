@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VM="charmkeeper-integ"
+VM="charmkeeper"
 
 multipass launch 24.04 \
   --name $VM \

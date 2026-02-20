@@ -1,5 +1,5 @@
 ---
-name: charmkeeper-integration-tests
+name: charmkeeperration-tests
 description: Use this skill when you need to write, update, migrate or fix integration tests.
 ---
 
@@ -48,23 +48,23 @@ Plan:
   
 ## Local testing
 
-The integration tests should be run in a virtual machine named "charmkeeper-integ".
+The integration tests should be run in a virtual machine named "charmkeeper".
 
 If the machine doesn't exist, create it with: `scripts/create-charmkeeper-vm.sh`.
 
 If not already done, mount the working directory folder in the machine with
 
 ```bash
-multipass mount --type native $PWD charmkeeper-integ:/workdir
+multipass mount --type native $PWD charmkeeper:/workdir
 ```
 
 Look at CONTRIBUTING.md to see if there are specific instructions to build and test the charm.
 
 Don't forget to rebuild the charm (and the rock) if you change the code.
 
-Unless there is something specific mentioned, you should be able to run the unit tests with: `multipass exec charmkeeper-integ -d /workdir/ -- tox`
+Unless there is something specific mentioned, you should be able to run the unit tests with: `multipass exec charmkeeper -d /workdir/ -- tox`
 
-Then run the integration tests with `multipass exec charmkeeper-integ -d /workdir/ -- tox -e integration -- --charm-file=path-to-charm`.
+Then run the integration tests with `multipass exec charmkeeper -d /workdir/ -- tox -e integration -- --charm-file=path-to-charm`.
 
 # Maintain
 

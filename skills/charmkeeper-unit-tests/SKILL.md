@@ -1,5 +1,5 @@
 ---
-name: charmkeeper-unit-tests
+name: charmkeeper-tests
 description: Use this skill when you need to write, update, migrate or fix unit tests.
 ---
 
@@ -34,7 +34,7 @@ Plan:
 
 ## Local testing
 
-The unit tests should be run in a virtual machine named "charmkeeper-unit".
+The unit tests should be run in a virtual machine named "charmkeeper".
 
 If the machine doesn't exist, create it with: `scripts/create-charmkeeper-vm.sh`.
 
