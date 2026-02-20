@@ -5,32 +5,19 @@ description: Use this skill when asked to write, test or fix terraform modules f
 
 Plan:
 
-- Ensure the terraform modules are following the development standards.
+- Find the terraform modules in the repository.
+- Ensure each terraform module is following the implementation standards.
 - Run the tests to ensure the modules work as expected.
 
-# Implementation
+# Implementation standards
 
-## Writing terraform modules
+- Expected versions:
 
-All charms should contain terraform tests.
+  - `terraform`: ~> 1.12
+  - `juju provider`: ~> 1.0
 
-Terraform tests may be found under:
-
-- `terraform/` only
-
-Or
-
-- `terraform/charm/` and `terraform/product/`
-
-Or
-
-- `terraform/' and `terraform-product/`
-
-If there are no such folders in the tested charm. Stop here.
-
-- Terraform modules should use juju provider version "~> 1.0".
 - The module should only have a "model_uuid" variable, no "model" variable.
-- Lint terraform modules with `terraform fmt --recursive` and `tflint`.
+- Lint terraform modules with `terraform fmt --recursive` and `tflint --recursive`.
 
 # Testing
 
@@ -41,11 +28,9 @@ If there are no such folders in the tested charm. Stop here.
   - There is a `setup` folder to configure the model. Follow the example from https://raw.githubusercontent.com/canonical/platform-engineering-charm-template/refs/heads/main/terraform/tests/setup/main.tf
   - There is `main.tftest.hcl` file. Follow the example of https://raw.githubusercontent.com/canonical/platform-engineering-charm-template/refs/heads/main/terraform/tests/main.tftest.hcl
   
-    - Especially ensure that there is a renovate directive above each "revision" line.
+    - Ensure that there is a renovate directive above each "revision" line.
 
-  - After adapting the tests. There should not be a terraform/tests/main.tf file.
-
-
+  - After adapting the tests. There should not be a `terraform/tests/main.tf` file.
 
 ## Local testing
 
@@ -66,14 +51,12 @@ multipass exec charmkeeper -d /workdir/$TERRAFORM_MODULE -- terraform init
 multipass exec charmkeeper -d /workdir/$TERRAFORM_MODULE -- terraform test
 ```
 
-And run any additional ".sh" scripts in `$TERRAFORM_MODULE/tests`.
-
 ## CI testing
 
 This workflow is the reference to use to implement or update CI tests: https://raw.githubusercontent.com/canonical/platform-engineering-charm-template/refs/heads/main/.github/workflows/test_terraform_modules.yaml
 
 - Adapt the k8s-controller and lxd-controller value depending on the charm type.
-- Adapt the paths if the modules are organized differently.
+- Adapt the `terraform-directories` to reflect where the modules are in this charm.
 
 # Maintain
 
