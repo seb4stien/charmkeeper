@@ -58,14 +58,16 @@ If not already done, mount the working directory folder in the machine with
 multipass mount --type native $PWD charmkeeper:/workdir
 ```
 
-Run tests with:
+Look at CONTRIBUTING.md to see if there are specific instructions to build and test the charm.
+
+Don't forget to rebuild the charm (and the rock) if you change the code.
+
+Unless there is something specific mentioned, you should be able to run the tests with:
 
 ```bash
 multipass exec charmkeeper -d /workdir/ -- tox 
-multipass exec charmkeeper -d /workdir/ -- tox -e integration
+multipass exec charmkeeper -d /workdir/ -- tox -e integration -- --charm-file=path-to-charm
 ```
-
-You may find additional information to run the tests in CONTRIBUTING.md
 
 # Maintain
 
