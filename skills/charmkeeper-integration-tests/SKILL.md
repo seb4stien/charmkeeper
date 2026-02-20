@@ -48,14 +48,14 @@ Plan:
   
 ## Local testing
 
-The integration tests should be run in a virtual machine named "charmkeeper".
+The integration tests should be run in a virtual machine named "charmkeeper-integ".
 
 If the machine doesn't exist, create it with: `scripts/create-charmkeeper-vm.sh`.
 
 If not already done, mount the working directory folder in the machine with
 
 ```bash
-multipass mount --type native $PWD charmkeeper:/workdir
+multipass mount --type native $PWD charmkeeper-integ:/workdir
 ```
 
 Look at CONTRIBUTING.md to see if there are specific instructions to build and test the charm.
@@ -65,8 +65,8 @@ Don't forget to rebuild the charm (and the rock) if you change the code.
 Unless there is something specific mentioned, you should be able to run the tests with:
 
 ```bash
-multipass exec charmkeeper -d /workdir/ -- tox 
-multipass exec charmkeeper -d /workdir/ -- tox -e integration -- --charm-file=path-to-charm
+multipass exec charmkeeper-integ -d /workdir/ -- tox 
+multipass exec charmkeeper-integ -d /workdir/ -- tox -e integration -- --charm-file=path-to-charm
 ```
 
 # Maintain

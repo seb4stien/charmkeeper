@@ -34,21 +34,21 @@ Plan:
 
 ## Local testing
 
-The terraform tests should be run in a virtual machine named "charmkeeper".
+The terraform tests should be run in a virtual machine named "charmkeeper-tf".
 
 If the machine doesn't exist, create it with: `scripts/create-charmkeeper-vm.sh`.
 
 If not already done, mount the working directory folder in the machine with
 
 ```bash
-multipass mount --type native $PWD charmkeeper:/workdir
+multipass mount --type native $PWD charmkeeper-tf:/workdir
 ```
 
 For each TERRAFORM_MODULE
 
 ```bash
-multipass exec charmkeeper -d /workdir/$TERRAFORM_MODULE -- terraform init
-multipass exec charmkeeper -d /workdir/$TERRAFORM_MODULE -- terraform test
+multipass exec charmkeeper-tf -d /workdir/$TERRAFORM_MODULE -- terraform init
+multipass exec charmkeeper-tf -d /workdir/$TERRAFORM_MODULE -- terraform test
 ```
 
 ## CI testing
