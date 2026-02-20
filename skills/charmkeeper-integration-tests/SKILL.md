@@ -58,11 +58,14 @@ If not already done, mount the working directory folder in the machine with
 multipass mount --type native $PWD charmkeeper:/workdir
 ```
 
-Run integration tests with:
+Run tests with:
 
 ```bash
-multipass exec charmkeeper -d /workdir/$TERRAFORM_MODULE -- tox -e integration
+multipass exec charmkeeper -d /workdir/ -- tox 
+multipass exec charmkeeper -d /workdir/ -- tox -e integration
 ```
+
+You may find additional information to run the tests in CONTRIBUTING.md
 
 # Maintain
 
