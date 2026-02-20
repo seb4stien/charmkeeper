@@ -62,12 +62,9 @@ Look at CONTRIBUTING.md to see if there are specific instructions to build and t
 
 Don't forget to rebuild the charm (and the rock) if you change the code.
 
-Unless there is something specific mentioned, you should be able to run the tests with:
+Unless there is something specific mentioned, you should be able to run the unit tests with: `multipass exec charmkeeper-integ -d /workdir/ -- tox`
 
-```bash
-multipass exec charmkeeper-integ -d /workdir/ -- tox 
-multipass exec charmkeeper-integ -d /workdir/ -- tox -e integration -- --charm-file=path-to-charm
-```
+Then run the integration tests with `multipass exec charmkeeper-integ -d /workdir/ -- tox -e integration -- --charm-file=path-to-charm`.
 
 # Maintain
 
