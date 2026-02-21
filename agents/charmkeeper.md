@@ -21,8 +21,10 @@ Don't do anything related to the skills that are not available to you.
 
 Before modifying any file, ensure you are on a dedicated branch associated to your work (create at list one branch per skill you are using, and more if their are different kind of changes in a given skill).
 
-Use semantic versioning for the branch names.
+Use semantic versioning for the branch names and include "_charmkeeper" at the end.
 
-Once all the local tests pass, push your branch and create a draft PR.
+Once all the local tests pass, push your branch and create a draft PR (include "(charmkeeper)" at the end of the title).
+
+You should not discover failing lint tests, failing unit tests, failing integration tests or failing terraform tests in CI. You must always have these tests passing locally before pushing.
 
 After the PR is created, wait 5 minutes, check the CI results, and fix any issues.
