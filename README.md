@@ -13,27 +13,39 @@ Current area supported:
 
 ## Requirements
 
-The agent needs `multipass` to be installed to be able to perform tests in an isolated environment:
+The recommended way to use the agent is to create a dedicated virtual machine with all the requirements installed for the agent to perform its work.
+
+The `scripts/charmkeeper-vm.sh` script will create a usable VM using multipass. You will need to install `multipass` before using it:
 
 ```bash
 sudo snap install multipass
 ```
 
-Copilot CLI must be installed. See <https://docs.github.com/fr/copilot/how-tos/copilot-cli/set-up-copilot-cli/install-copilot-cli>.
+Then:
+
+```bash
+./scripts/charmkeeper-vm.sh
+```
+
+From this point, all operations are done in the `charmkeeper` virtual machine:
+
+```bash
+multipass shell charmkeeper
+```
+
+As `charmkeeper` will run in the VM, you need to configure your GitHub credentials
+
+```bash
+
+```
 
 ## Installation
 
+Reminder: all operations are done in the `charmkeeper` virtual machine (`multipass shell charmkeeper` if necessary).
+
 ```bash
 git clone https://github.com/seb4stien/charmkeeper.git
-mkdir -p ~/.copilot/{agents,skills}
-echo "Installing agents"
-for agent in $PWD/charmkeeper/agents/*; do
-    ln -sf $agent ~/.copilot/agents/
-done
-echo "Installing skills"
-for skill in $PWD/charmkeeper/skills/*; do
-    ln -sf $skill ~/.copilot/skills/
-done
+cd charmkeeper
 ```
 
 Note: you can also install the `charmkeeper skills` with `npx skills add seb4stien/charmkeeper -y -g -a github-copilot`.
