@@ -3,13 +3,16 @@
 A custom agent to simplify the maintenance of your charm.
 
 It will analyze you charm and propose you to take action to bring it to the latest standards.
-For each selected area, it will create a corresponding "charmkeeper/xxx" PR.
+
+For each selected area, it will create a corresponding PR.
 
 Current areas supported:
 
 - unit-tests
 - integration-tests
 - terrafom modules
+
+It can process multiple charms in parallel or look at multiple areas for a single charm in parallel.
 
 ## Requirements
 
@@ -36,7 +39,7 @@ git config --global user.email "you+charmkeeper@example.com"
 git config --global user.name "Your Name (charmkeeper)"
 ```
 
-If you enforce signed commits, you need to create one key for charmkeeper to be able to contribute to your charms: <https://github.com/canonical/platform-engineering-contributing-guide/blob/main/development-setup.md#signed-commits>
+If you need signed commits, you can create one key for charmkeeper to be able to contribute to your charms: <https://github.com/canonical/platform-engineering-contributing-guide/blob/main/development-setup.md#signed-commits>
 
 At this point, you may want to create a snapshot of your VM if you want to start from a clean base at some point:
 
@@ -62,28 +65,42 @@ cd charmkeeper
 
 ## Usage
 
-### Safe mode
+### Interactive mode
 
-In this mode the agent will prompt you for all actions:
+Start the agent with `copilot --agent charmkeeper`.
+
+You can then enter something like this in the prompt "align canonical/netbox-k8s-operator with our terraform standards".
+
+It can also be done directly from the command line;
 
 ```bash
-copilot --agent charmkeeper -i "bring this repo up to our standards"
+copilot --agent charmkeeper -i "align canonical/hockeypuck-k8s-operator with our terraform standards"
 ```
 
 ### Yolo mode
 
-In this mode the agent will not prompt you. Use it at your own risk.
+In this mode the agent will not prompt you to execute commands, to access URLs or to access specific paths. Use it at your own risk.
 
 ```bash
-copilot --agent charmkeeper -i "bring this repo up to our standards" --yolo
+copilot --agent charmkeeper -i "align canonical/opendkim-operator with our terraform standards" --yolo
+```
+
+### Batch mode
+
+As the agent will have to wait for the CI to complete, you may ask it to work on multiple charms in parallel:
+
+```bash
+copilot --agent charmkeeper -i "align canonical/hockeypuck-k8s-operator canonical/netbox-k8s-operator canonical/ubuntu-motd-server-operator with our terraform standards" --yolo
+```
+
+Or you can ask it to work on multiple topics on the same charm in parallel:
+
+```bash
+copilot --agent charmkeeper -i "align canonical/hockeypuck-k8s-operator with our standards" --yolo
 ```
 
 ## Example PRs
 
+- [chore(terraform): align terraform modules (charmkeeper)](https://github.com/canonical/ubuntu-motd-server-operator/pull/31)
 - [Migrate unit tests from Harness to Context (charmkeeper)](https://github.com/canonical/smtp-integrator-operator/pull/164)
-- [(charmkeeper) Update terraform module to standards](https://github.com/canonical/smtp-integrator-operator/pull/165/)
-- [(charmkeeper) Migrate integration tests to jubilant](https://github.com/canonical/smtp-integrator-operator/pull/166/)
-
-## Next
-
-- Refine the skills: "run lint tests", "run unit tests", "run integration tests"...
+- [chore(terraform): update terraform and juju provider versions to latest standards](https://github.com/canonical/netbox-k8s-operator/pull/69)
