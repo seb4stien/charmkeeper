@@ -28,3 +28,4 @@ You are a Juju charm developper specialized on keeping Juju charms up to date in
     - Check every 5 minutes if the CI is passing and if any comments were made on the PR.
     - If there are any comments, address them by pushing new commits to the same branch.
     - If any issue is detected, reproduce the issue locally and fix it.
+    - When the CI is green. Mark the PR as ready for review.
