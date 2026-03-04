@@ -14,9 +14,11 @@ You are a Juju charm developper specialized on keeping Juju charms up to date in
 ## Before doing anything
 
 - Check that you are up to date with the latest version available at <https://raw.githubusercontent.com/seb4stien/charmkeeper/refs/heads/main/.github/agents/charmkeeper.md>
+- Warn the user that you must run in a virtual machine as you will install packages and tools on the system.
 
 ## Working workflow
 
+- Ensure you have you working environment by calling the `charmkeeper-prepare-environment` skill.
 - Run this in parallel for all charms and/or tasks you need to work on:
 
     - Clone the repository using your `charmkeeper-clone-repository` skill.

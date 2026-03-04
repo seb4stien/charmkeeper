@@ -16,39 +16,35 @@ It can process multiple charms in parallel or look at multiple areas for a singl
 
 ## Requirements
 
-The recommended way to use the agent is to create a dedicated virtual machine with all the requirements installed for the agent to perform its work.
+To use the agent, create a dedicated virtual machine to isolate it from your main system: it will have it's own credentials, and you will be able to run it in autonomous mode.
 
-The `scripts/charmkeeper-vm.sh` script will create a usable VM using multipass. You will need to install `multipass` before using it:
+You can use `multipass` to create a machine:
 
 ```bash
 sudo snap install multipass
+multipass launch 24.04 \
+  --name charmkeeper \
+  --cpus 4 \
+  --memory 8G \
+  --disk 50G \
+  --timeout 180
 ```
 
-Then:
+Install the main tools (it may take some time, ~10min, you can start the next steps in parallel):
 
 ```bash
-./scripts/charmkeeper-vm.sh
+multipass exec charmkeeper -- snap instal concierge --classic
+multipass exec charmkeeper -- sudo concierge -p k8s prepare --extra-snaps astral-uv,terraform,tflint --extra-debs git,gnupg,wget
 ```
 
-Log in the virtual machine (`multipass shell charmkeeper`) and configure you credentials:
+Finally, install and configure copilot:
 
 ```bash
-gh auth login -p https -h github.com --web
-copilot login
-git config --global user.email "you+charmkeeper@example.com"
-git config --global user.name "Your Name (charmkeeper)"
+multipass exec charmkeeper -- sh -c "curl -fsSL https://gh.io/copilot-install | sudo bash"
+multipass exec charmkeeper -- copilot login
 ```
 
-If you need signed commits, you can create one key for charmkeeper to be able to contribute to your charms: <https://github.com/canonical/platform-engineering-contributing-guide/blob/main/development-setup.md#signed-commits>
-
-At this point, you may want to create a snapshot of your VM if you want to start from a clean base at some point:
-
-```bash
-multipass stop charmkeeper
-multipass snapshot charmkeeper --name base
-```
-
-## Installation
+## Installation and configuration
 
 From this point, all operations are done in the `charmkeeper` virtual machine:
 
@@ -56,14 +52,17 @@ From this point, all operations are done in the `charmkeeper` virtual machine:
 multipass shell charmkeeper
 ```
 
-The installation is just about cloning the repo:
+The installation starts with cloning the `charmkeeper` repo:
 
 ```bash
 git clone https://github.com/seb4stien/charmkeeper.git
-cd charmkeeper
 ```
 
+Then let copilot guide you through the final configuration steps with `cd charmkeeper && copilot -i /charmkeeper-prepare-environment --yolo`.
+
 ## Usage
+
+Note: all commands are expected to be run from the `~/charmkeeper` folder in the `charmkeeper` virtual machine.
 
 ### Interactive mode
 
