@@ -19,15 +19,23 @@ Plan:
 
 - Expected versions:
 
-  - `terraform`: ~> 1.12
-  - `juju provider`: ~> 1.0
+  - terraform version: ~> 1.12
+  - terraform juju provider version: ~> 1.0
 
 - The module should only have a "model_uuid" variable, no "model" variable.
+- The module should have a `.tflint.hcl` file with at least the following content (this is recursive, no need to add it in subfolders):
+
+```hcl
+rule "terraform_required_version" {
+  enabled = true
+}
+```
+
 - Lint terraform modules with the following commands and fix the errors and the warnings.
 
 ```bash
-multipass exec charmkeeper -d /workdir/'repo'/$TERRAFORM_MODULE -- terraform fmt --recursive
-multipass exec charmkeeper -d /workdir/'repo'/$TERRAFORM_MODULE -- tflint --recursive
+terraform fmt --recursive
+tflint --recursive
 ```
 
 ## Best practices
@@ -47,17 +55,28 @@ Look into `learnings/` to find learnings from previous similar tasks. If you fin
 
   - After adapting the tests. There should not be a `terraform/tests/main.tf` file.
 
+  - Always set test revisions to match the current `latest/edge` revision on CharmHub:
+
+```bash
+curl -s "https://api.charmhub.io/v2/charms/info/<charm>?fields=channel-map" | python3 -c "
+import json, sys
+data = json.load(sys.stdin)
+for ch in data.get('channel-map', []):
+    c = ch.get('channel', {})
+    r = ch.get('revision', {})
+    if c.get('risk') == 'edge' and c.get('track') == 'latest':
+        print(f\"Rev: {r.get('revision')}\")
+"
+```
+
+
 ### Local testing
-
-The terraform tests should be run in a virtual machine named "charmkeeper".
-
-If the machine doesn't exist, create it with the `charmkeeper-vm` skill.
 
 For each TERRAFORM_MODULE
 
 ```bash
-multipass exec charmkeeper -d /workdir/'repo'/$TERRAFORM_MODULE -- terraform init
-multipass exec charmkeeper -d /workdir/'repo'/$TERRAFORM_MODULE -- terraform test
+terraform init
+terraform test
 ```
 
 ## CI testing

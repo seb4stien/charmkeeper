@@ -43,14 +43,10 @@ Look into `learnings/` to find learnings from previous similar tasks. If you fin
 
 ### Local testing
 
-The unit tests should be run in a virtual machine named "charmkeeper".
-
-If the machine doesn't exist, create it with the `charmkeeper-vm` skill.
-
 Look at CONTRIBUTING.md to see if there are specific instructions to test the charm.
 
 Unless there is something specific mentioned, you should be able to run the tests with:
 
 ```bash
-multipass exec charmkeeper -d /workdir/'repo' -- tox 
+tox 
 ```
