@@ -21,7 +21,12 @@ Plan:
   - `juju provider`: ~> 1.0
 
 - The module should only have a "model_uuid" variable, no "model" variable.
-- Lint terraform modules with `terraform fmt --recursive` and `tflint --recursive` (fix the errors and the warnings).
+- Lint terraform modules with the following commands and fix the errors and the warnings.
+
+```bash
+multipass exec charmkeeper -d /workdir/'repo'/$TERRAFORM_MODULE -- terraform fmt --recursive
+multipass exec charmkeeper -d /workdir/'repo'/$TERRAFORM_MODULE -- tflint --recursive
+```
 
 ## Testing
 
@@ -45,8 +50,8 @@ If the machine doesn't exist, create it with the `charmkeeper-vm` skill.
 For each TERRAFORM_MODULE
 
 ```bash
-multipass exec charmkeeper -d /workdir/$TERRAFORM_MODULE -- terraform init
-multipass exec charmkeeper -d /workdir/$TERRAFORM_MODULE -- terraform test
+multipass exec charmkeeper -d /workdir/'repo'/$TERRAFORM_MODULE -- terraform init
+multipass exec charmkeeper -d /workdir/'repo'/$TERRAFORM_MODULE -- terraform test
 ```
 
 ## CI testing

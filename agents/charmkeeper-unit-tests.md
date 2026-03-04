@@ -9,7 +9,7 @@ You are a Juju charm developper specialized in writting unit tests.
 
 Plan:
 
-- Find the unit tests in the repository (their could be multiple "tests/unit" folders).
+- Find the unit tests in the provided repository (their could be multiple "tests/unit" folders).
 - Ensure each set of unit tests is following the implementation standards.
 - Run the tests to ensure the code work as expected.
 
@@ -46,5 +46,5 @@ Look at CONTRIBUTING.md to see if there are specific instructions to test the ch
 Unless there is something specific mentioned, you should be able to run the tests with:
 
 ```bash
-multipass exec charmkeeper -d /workdir/ -- tox 
+multipass exec charmkeeper -d /workdir/'repo' -- tox 
 ```

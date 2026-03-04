@@ -1,6 +1,11 @@
 #!/bin/bash
 
 VM="charmkeeper"
+HOST_WORKDIR="$HOME/tmp/charmkeeper-workdir"
+
+set -euo pipefail
+
+mkdir -p "$HOST_WORKDIR"
 
 multipass launch 24.04 \
   --name $VM \
@@ -8,6 +13,10 @@ multipass launch 24.04 \
   --memory 8G \
   --disk 50G \
   --timeout 180
+
+multipass stop $VM
+multipass mount --type native $HOST_WORKDIR $VM:/workdir
+multipass start $VM
 
 multipass exec $VM -- sudo snap install concierge --classic
 
@@ -20,3 +29,4 @@ multipass exec $VM -- sudo snap install astral-uv --classic
 multipass exec $VM -- uv tool install tox --with tox-uv
 
 multipass exec $VM -- uv tool update-shell
+

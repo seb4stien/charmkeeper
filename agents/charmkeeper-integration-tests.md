@@ -54,19 +54,13 @@ The integration tests should be run in a virtual machine named "charmkeeper".
 
 If the machine doesn't exist, create it with the `charmkeeper-vm` skill.
 
-If not already done, mount the working directory folder in the machine with
-
-```bash
-multipass mount --type native $PWD charmkeeper:/workdir
-```
-
 Look at CONTRIBUTING.md to see if there are specific instructions to build and test the charm.
 
 Don't forget to rebuild the charm (and the rock) if you change the code.
 
 Unless there is something specific mentioned, you should be able to run the unit tests with: `multipass exec charmkeeper -d /workdir/ -- tox`
 
-Then run the integration tests with `multipass exec charmkeeper -d /workdir/ -- tox -e integration -- --charm-file=path-to-charm`.
+Then run the integration tests with `multipass exec charmkeeper -d /workdir/'repo' -- tox -e integration -- --charm-file=path-to-charm`.
 
 ## Maintain
 

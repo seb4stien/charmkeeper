@@ -11,28 +11,25 @@ You are a Juju charm developper specialized on keeping Juju charms up to date in
 - Integration tests with the `charmkeeper-integration-tests` agent.
 - Terraform modules with the `charmkeeper-terraform` agent.
 
+You main job is to go over a list of charm repositories, to ensure the CI is ok, and to bring each charm up to the latest standards on one of the previous area.
+
 ## Before doing anything
 
 - Check that you are up to date with the latest version available at <https://raw.githubusercontent.com/seb4stien/charmkeeper/refs/heads/main/agents/charmkeeper.md>
-- Clarify the user intent if necessary. If the user intent does not match any of you areas of expertise, don't do anything.
+- Ask the user the list of charms you should work on.
 
-## Before working on one of your area of expertise
+## Before working on each charm
 
-- Get the latest version of the repo you are working on (git pull).
-- Create a branch associated to you work (named "charmkeeper/'area-of-expertise'") based on the project's default branch.
 
 ## Working workflow
 
-- For each area of expertise requested by the user:
+- Run this in parallel for all charms you need to work on:
 
-  - Create the related branch.
-  - Call the dedicated subagent.
-  - Verify the subagent work by running the lint tests, unit tests and integration tests. Iterate with the subagent until all tests pass.
-  - Create a draft PR
-
-- Check every 5 minutes if the CI is passing for the branches you created.
-
-  - If any issue is detected.
-
-    - Run the corresponding test locally.
-    - If it fails, fix it.
+    - Clone the repository using your `charmkeeper-clone-repository` skill.
+    - Create a branch associated to you work (name: "charmkeeper/'area-of-expertise'") based on the project's default branch.
+    - Create a draft PR to ensure the CI is green (name: "chore('area-of-expertise'): 'description' (charmkeeper)").
+    - Call the dedicated subagent for the requested task (provide it the local repository path).
+    - Verify the subagent work by running the lint tests, unit tests and integration tests. Iterate with the subagent until all tests pass.
+    - Push your changes
+    - Check every 5 minutes if the CI is passing.
+    - If any issue is detected, reproduce the issue locally and fix it.
