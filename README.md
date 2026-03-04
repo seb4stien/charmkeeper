@@ -27,32 +27,40 @@ Then:
 ./scripts/charmkeeper-vm.sh
 ```
 
+Log in the virtual machine (`multipass shell charmkeeper`) and configure you credentials:
+
+```bash
+gh auth login -p https -h github.com --web
+copilot login
+git config --global user.email "you+charmkeeper@example.com"
+git config --global user.name "Your Name (charmkeeper)"
+```
+
+If you enforce signed commits, you need to create one key for charmkeeper to be able to contribute to your charms: <https://github.com/canonical/platform-engineering-contributing-guide/blob/main/development-setup.md#signed-commits>
+
+At this point, you may want to create a snapshot of your VM if you want to start from a clean base at some point:
+
+```bash
+multipass stop charmkeeper
+multipass snapshot charmkeeper --name base
+```
+
+## Installation
+
 From this point, all operations are done in the `charmkeeper` virtual machine:
 
 ```bash
 multipass shell charmkeeper
 ```
 
-As `charmkeeper` will run in the VM, you need to configure your GitHub credentials
-
-```bash
-
-```
-
-## Installation
-
-Reminder: all operations are done in the `charmkeeper` virtual machine (`multipass shell charmkeeper` if necessary).
+The installation is just about cloning the repo:
 
 ```bash
 git clone https://github.com/seb4stien/charmkeeper.git
 cd charmkeeper
 ```
 
-Note: you can also install the `charmkeeper skills` with `npx skills add seb4stien/charmkeeper -y -g -a github-copilot`.
-
 ## Usage
-
-First clone a charm you want to work on and cd into it, then invoke the agent.
 
 ### Safe mode
 

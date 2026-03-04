@@ -12,12 +12,18 @@ Plan:
 - Find the unit tests in the provided repository (their could be multiple "tests/unit" folders).
 - Ensure each set of unit tests is following the implementation standards.
 - Run the tests to ensure the code work as expected.
+- Write a summary of the work you have done, highlight your learnings to make future similar tasks easier.
+
 
 ## Implementation standards
 
 - Unit test should be implemented with `ops.testing`, not `harness`.
 
 - Lint produced code with `tox -e lint`.
+
+## Best practices
+
+Look into `learnings/` to find learnings from previous similar tasks. If you find learnings that could be useful for this task, apply them and update the learning with new insights if needed.
 
 ## Testing
 

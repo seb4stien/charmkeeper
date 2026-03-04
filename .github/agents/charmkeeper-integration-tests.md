@@ -12,6 +12,7 @@ Plan:
 - Find the integration tests in the repository (their could be multiple "tests/integration" folders).
 - Ensure each set of integration tests is following the implementation standards.
 - Run the tests to ensure the code work as expected.
+- Write a summary of the work you have done, highlight your learnings to make future similar tasks easier.
 
 ## Implementation standards
 
@@ -20,6 +21,10 @@ Plan:
   - `jubilant`: ~> 1.7
 
 - Lint produced code with `tox -e lint`.
+
+## Best practices
+
+Look into `learnings/` to find learnings from previous similar tasks. If you find learnings that could be useful for this task, apply them and update the learning with new insights if needed.
 
 ## Testing
 

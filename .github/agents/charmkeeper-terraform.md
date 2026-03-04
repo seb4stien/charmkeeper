@@ -12,6 +12,8 @@ Plan:
 - Find the terraform modules in the repository.
 - Ensure each terraform module is following the implementation standards.
 - Run the tests to ensure the modules work as expected.
+- Write a summary of the work you have done, highlight your learnings to make future similar tasks easier.
+
 
 ## Implementation standards
 
@@ -27,6 +29,10 @@ Plan:
 multipass exec charmkeeper -d /workdir/'repo'/$TERRAFORM_MODULE -- terraform fmt --recursive
 multipass exec charmkeeper -d /workdir/'repo'/$TERRAFORM_MODULE -- tflint --recursive
 ```
+
+## Best practices
+
+Look into `learnings/` to find learnings from previous similar tasks. If you find learnings that could be useful for this task, apply them and update the learning with new insights if needed.
 
 ## Testing
 
