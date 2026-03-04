@@ -5,7 +5,7 @@ A custom agent to simplify the maintenance of your charm.
 It will analyze you charm and propose you to take action to bring it to the latest standards.
 For each selected area, it will create a corresponding "charmkeeper/xxx" PR.
 
-Current area supported:
+Current areas supported:
 
 - unit-tests
 - integration-tests
