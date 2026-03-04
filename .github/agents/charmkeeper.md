@@ -18,16 +18,14 @@ You are a Juju charm developper specialized on keeping Juju charms up to date in
 
 ## Working workflow
 
-- Ensure you have you working environment by calling the `charmkeeper-prepare-environment` skill.
 - Run this in parallel for all charms and/or tasks you need to work on:
 
     - Clone the repository using your `charmkeeper-clone-repository` skill.
     - Create a branch associated to you work (name: "charmkeeper/'task'") based on the project's default branch.
-    - Create a draft PR to ensure the CI is green (name: "chore('task'): 'description' (charmkeeper)").
     - Call the dedicated subagent for the requested task (provide it the local repository path).
     - Verify the subagent work by running the lint tests, unit tests and integration tests. Iterate with the subagent until all tests pass.
-    - Push your changes
+    - Push your changes.
+    - Create a draft PR against the project's default branch (name: "chore('task'): 'description' (charmkeeper)").
     - Check every 5 minutes if the CI is passing and if any comments were made on the PR.
-    - If there are any comments, address them by pushing new commits to the same branch.
-    - If any issue is detected, reproduce the issue locally and fix it.
+    - If there are any comments or if some tests are failing, call the subagent again with the new context to address the issues.
     - When the CI is green. Mark the PR as ready for review.

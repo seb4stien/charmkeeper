@@ -1,12 +1,12 @@
 # charmkeeper
 
-A custom agent to simplify the maintenance of your charm.
+A custom agent to simplify the maintenance of your charms.
 
-It will analyze you charm and propose you to take action to bring it to the latest standards.
+It will analyze you charms and propose you to take action to bring them to the latest standards.
 
 For each selected area, it will create a corresponding PR.
 
-Current areas supported:
+Current supported areas:
 
 - unit-tests
 - integration-tests
@@ -16,7 +16,7 @@ It can process multiple charms in parallel or look at multiple areas for a singl
 
 ## Requirements
 
-To use the agent, create a dedicated virtual machine to isolate it from your main system: it will have it's own credentials, and you will be able to run it in autonomous mode.
+To use the agent, create a dedicated virtual machine to isolate it from your main system: it will have its own credentials, and you will be able to run it in autonomous mode.
 
 You can use `multipass` to create a machine:
 
@@ -28,20 +28,6 @@ multipass launch 24.04 \
   --memory 8G \
   --disk 50G \
   --timeout 180
-```
-
-Install the main tools (it may take some time, ~10min, you can start the next steps in parallel):
-
-```bash
-multipass exec charmkeeper -- snap instal concierge --classic
-multipass exec charmkeeper -- sudo concierge -p k8s prepare --extra-snaps astral-uv,terraform,tflint --extra-debs git,gnupg,wget
-```
-
-Finally, install and configure copilot:
-
-```bash
-multipass exec charmkeeper -- sh -c "curl -fsSL https://gh.io/copilot-install | sudo bash"
-multipass exec charmkeeper -- copilot login
 ```
 
 ## Installation and configuration
@@ -58,7 +44,13 @@ The installation starts with cloning the `charmkeeper` repo:
 git clone https://github.com/seb4stien/charmkeeper.git
 ```
 
-Then let copilot guide you through the final configuration steps with `cd charmkeeper && copilot -i /charmkeeper-prepare-environment --yolo`.
+Then you can use the following helper scripts to configure the virtual machine:
+
+```bash
+cd charmkeeper
+./scripts/charmkeeper-install-requirements.sh
+./scripts/charmkeeper-configure-credentials.sh
+```
 
 ## Usage
 
@@ -76,6 +68,8 @@ It can also be done directly from the command line;
 copilot --agent charmkeeper -i "align canonical/hockeypuck-k8s-operator with our terraform standards"
 ```
 
+Note: you can use the `/yolo` command in the copilot console to active the autonomous mode.
+
 ### Yolo mode
 
 In this mode the agent will not prompt you to execute commands, to access URLs or to access specific paths. Use it at your own risk.
@@ -92,7 +86,13 @@ As the agent will have to wait for the CI to complete, you may ask it to work on
 copilot --agent charmkeeper -i "align canonical/hockeypuck-k8s-operator canonical/netbox-k8s-operator canonical/ubuntu-motd-server-operator with our terraform standards" --yolo
 ```
 
-Or you can ask it to work on multiple topics on the same charm in parallel:
+or
+
+```bash
+copilot --agent charmkeeper -i "align all repositories from the canonical org with the 'charm' and 'squad-emea' topics with our terraform standards" --yolo
+```
+
+You can ask it to work on multiple topics on the same charm in parallel:
 
 ```bash
 copilot --agent charmkeeper -i "align canonical/hockeypuck-k8s-operator with our standards" --yolo

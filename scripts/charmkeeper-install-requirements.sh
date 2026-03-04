@@ -6,23 +6,11 @@
 
 set -euo pipefail
 
-juju controllers | grep lxd &> /dev/null
-LXD_BOOTSTRAPPED=$?
+sudo snap install concierge --classic
+sudo concierge prepare -c concierge.yaml
 
-if [ $LXD_BOOTSTRAPPED -ne 0 ]; then
-   echo "Bootstrapping LXD controller for juju"
-   juju bootstrap localhost lxd
-fi
-
-if ! which tox &> /dev/null; then
-	echo "Installing tox and tox-uv"
-    uv tool install tox --with tox-uv && uv tool update-shell
-fi
-
-if ! which gpg &> /dev/null; then
-    echo "Installing GnuPG"
-    sudo apt install gnupg -y
-fi
+uv tool install tox --with tox-uv
+uv tool update-shell
 
 # Install GitHub CLI
 # See: https://github.com/cli/cli/blob/trunk/docs/install_linux.md
@@ -38,3 +26,6 @@ if ! which gh > /dev/null; then
 	&& sudo apt update \
 	&& sudo apt install gh -y
 fi
+
+# Install Copilot CLI
+curl -fsSL https://gh.io/copilot-install | sudo bash
