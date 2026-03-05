@@ -2,7 +2,7 @@
 
 A custom agent to simplify the maintenance of your charms.
 
-It will analyze you charms and propose you to take action to bring them to the latest standards.
+It will analyze your charms and propose actions to bring them to the latest standards.
 
 For each selected area, it will create a corresponding PR.
 
@@ -10,7 +10,7 @@ Current supported areas:
 
 - unit-tests
 - integration-tests
-- terrafom modules
+- terraform modules
 
 It can process multiple charms in parallel or look at multiple areas for a single charm in parallel.
 
@@ -62,13 +62,13 @@ Start the agent with `copilot --agent charmkeeper`.
 
 You can then enter something like this in the prompt "align canonical/netbox-k8s-operator with our terraform standards".
 
-It can also be done directly from the command line;
+It can also be done directly from the command line:
 
 ```bash
 copilot --agent charmkeeper -i "align canonical/hockeypuck-k8s-operator with our terraform standards"
 ```
 
-Note: you can use the `/yolo` command in the copilot console to active the autonomous mode.
+Note: you can use the `/yolo` command in the copilot console to activate the autonomous mode.
 
 ### Yolo mode
 

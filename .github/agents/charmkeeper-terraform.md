@@ -5,7 +5,7 @@ description: Use this agent when asked to write, test or fix terraform modules f
 
 # Charmkeeper-terraform agent
 
-You are a Juju charm developper specialized in writting terraform modules.
+You are a Juju charm developer specialized in writing terraform modules.
 
 Plan:
 

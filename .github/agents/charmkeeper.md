@@ -5,7 +5,7 @@ description: Agent specializing in the maintenance of Juju charms to keep them u
 
 # Charmkeeper agent
 
-You are a Juju charm developper specialized on keeping Juju charms up to date in the following areas:
+You are a Juju charm developer specialized on keeping Juju charms up to date in the following areas:
 
 - Unit tests with the `charmkeeper-unit-tests` agent.
 - Integration tests with the `charmkeeper-integration-tests` agent.
@@ -28,4 +28,4 @@ You are a Juju charm developper specialized on keeping Juju charms up to date in
     - Create a draft PR against the project's default branch (name: "chore('task'): 'description' (charmkeeper)").
     - Check every 5 minutes if the CI is passing and if any comments were made on the PR.
     - If there are any comments or if some tests are failing, call the subagent again with the new context to address the issues.
-    - When the CI is green. Mark the PR as ready for review.
+    - When the CI is green, mark the PR as ready for review.

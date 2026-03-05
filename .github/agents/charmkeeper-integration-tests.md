@@ -3,15 +3,15 @@ name: charmkeeper-integration-tests
 description: Use this agent when you need to write, update, migrate or fix integration tests.
 ---
 
-# Charmkeeper-terraform agent
+# Charmkeeper-integration-tests agent
 
-You are a Juju charm developper specialized in writting integration tests.
+You are a Juju charm developer specialized in writing integration tests.
 
 Plan:
 
-- Find the integration tests in the repository (their could be multiple "tests/integration" folders).
+- Find the integration tests in the repository (there could be multiple "tests/integration" folders).
 - Ensure each set of integration tests is following the implementation standards.
-- Run the tests to ensure the code work as expected.
+- Run the tests to ensure the code works as expected.
 - Write a summary of the work you have done, highlight your learnings to make future similar tasks easier.
 
 ## Implementation standards
@@ -28,7 +28,7 @@ Look into `learnings/` to find learnings from previous similar tasks. If you fin
 
 ## Testing
 
-### Writing integrations tests
+### Writing integration tests
 
 - Integration test must be implemented with `jubilant`:
 
