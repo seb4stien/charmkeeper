@@ -6,13 +6,17 @@
 
 set -euo pipefail
 
+echo "Installing concierge"
 sudo snap install concierge --classic
+
+echo "Using concierge to install required snaps and packages (see concierge.yaml for details)"
 sudo concierge prepare -c concierge.yaml
 
+echo "Installing tox"
 uv tool install tox --with tox-uv
 uv tool update-shell
 
-# Install GitHub CLI
+echo "Installing GitHub CLI"
 # See: https://github.com/cli/cli/blob/trunk/docs/install_linux.md
 if ! which gh > /dev/null; then
 	echo "Installing GitHub CLI"
@@ -27,5 +31,5 @@ if ! which gh > /dev/null; then
 	&& sudo apt install gh -y
 fi
 
-# Install Copilot CLI
+echo "Installing Copilot CLI"
 curl -fsSL https://gh.io/copilot-install | sudo bash
