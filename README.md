@@ -24,8 +24,8 @@ You can use `multipass` to create a machine:
 sudo snap install multipass
 multipass launch 24.04 \
   --name charmkeeper \
-  --cpus 4 \
-  --memory 8G \
+  --cpus 8 \
+  --memory 16G \
   --disk 50G \
   --timeout 180
 ```
@@ -89,7 +89,7 @@ copilot --agent charmkeeper -i "align canonical/hockeypuck-k8s-operator canonica
 or
 
 ```bash
-copilot --agent charmkeeper -i "align all repositories from the canonical org with the 'charm' and 'squad-emea' topics with our terraform standards" --yolo
+copilot --agent charmkeeper -i "align all non-archived repositories from the canonical org with the 'charm' and 'squad-emea' topics with our terraform standards" --yolo
 ```
 
 You can ask it to work on multiple topics on the same charm in parallel:

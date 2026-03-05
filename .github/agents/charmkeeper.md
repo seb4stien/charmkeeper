@@ -18,7 +18,7 @@ You are a Juju charm developper specialized on keeping Juju charms up to date in
 
 ## Working workflow
 
-- Run this in parallel for all charms and/or tasks you need to work on:
+- Run this in parallel for all charms and/or tasks you need to work on (you may go by batches of 4 in parallel to avoid overloading the system):
 
     - Clone the repository using your `charmkeeper-clone-repository` skill.
     - Create a branch associated to you work (name: "charmkeeper/'task'") based on the project's default branch.
